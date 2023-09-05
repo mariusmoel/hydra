@@ -6,6 +6,7 @@ namespace hydra {
 Block::Block(Spinhalf const &variant) : variant_(variant) {}
 Block::Block(tJ const &variant) : variant_(variant) {}
 Block::Block(Electron const &variant) : variant_(variant) {}
+Block::Block(Fermion const &variant) : variant_(variant) {}
 Block::Block(block_variant_t const &variant) : variant_(variant) {}
 
 idx_t Block::size() const {

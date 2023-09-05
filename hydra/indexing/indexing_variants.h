@@ -15,6 +15,12 @@
 #include <hydra/indexing/electron/indexing_symmetric_no_np.h>
 #include <hydra/indexing/electron/indexing_symmetric_np.h>
 
+#include <hydra/indexing/fermion/indexing_no_np.h>
+#include <hydra/indexing/fermion/indexing_np.h>
+#include <hydra/indexing/fermion/indexing_symmetric_no_np.h>
+#include <hydra/indexing/fermion/indexing_symmetric_np.h>
+
+
 namespace hydra::indexing {
 
 // clang-format off
@@ -67,6 +73,24 @@ using ElectronIndexing =
 // clang-format on
 
 idx_t size(ElectronIndexing const &idxing);
+
+// clang-format off
+using FermionIndexing =
+  std::variant<fermion::IndexingNp<uint16_t>,
+	       fermion::IndexingNoNp<uint16_t>,
+	       fermion::IndexingSymmetricNp<uint16_t>,
+	       fermion::IndexingSymmetricNoNp<uint16_t>,
+	       fermion::IndexingNp<uint32_t>,
+	       fermion::IndexingNoNp<uint32_t>,
+	       fermion::IndexingSymmetricNp<uint32_t>,
+	       fermion::IndexingSymmetricNoNp<uint32_t>,
+	       fermion::IndexingNp<uint64_t>,
+	       fermion::IndexingNoNp<uint64_t>,
+	       fermion::IndexingSymmetricNp<uint64_t>,
+	       fermion::IndexingSymmetricNoNp<uint64_t>>;
+// clang-format on
+
+idx_t size(FermionIndexing const &idxing);
 
 // clang-format off
 using tJIndexing =

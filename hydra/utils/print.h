@@ -10,6 +10,7 @@
 #include <hydra/blocks/electron/electron.h>
 #include <hydra/blocks/spinhalf/spinhalf.h>
 #include <hydra/blocks/tj/tj.h>
+#include <hydra/blocks/fermion/fermion.h>
 
 #include <hydra/operators/bondlist.h>
 #include <hydra/states/product_state.h>
@@ -46,6 +47,7 @@ void PrintPretty(const char *identifier, Block const &block);
 void PrintPretty(const char *identifier, Spinhalf const &block);
 void PrintPretty(const char *identifier, tJ const &block);
 void PrintPretty(const char *identifier, Electron const &block);
+void PrintPretty(const char *identifier, Fermion const &block);
 
 void PrintPretty(const char *identifier, RandomState const &rstate);
 void PrintPretty(const char *identifier, ProductState const &pstate);

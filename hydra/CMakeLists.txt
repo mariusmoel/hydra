@@ -55,6 +55,11 @@ add_library(hydra STATIC
   indexing/electron/indexing_symmetric_np.cpp
   indexing/electron/indexing_symmetric_no_np.cpp
 
+  indexing/fermion/indexing_np.cpp
+  indexing/fermion/indexing_no_np.cpp
+  indexing/fermion/indexing_symmetric_np.cpp
+  indexing/fermion/indexing_symmetric_no_np.cpp
+
   blocks/blocks.cpp
   blocks/utils/block_utils.cpp
   blocks/spinhalf/spinhalf.cpp
@@ -67,6 +72,11 @@ add_library(hydra STATIC
   blocks/electron/electron_matrix.cpp
   blocks/electron/electron_apply.cpp
   blocks/electron/terms/compile.cpp
+
+  blocks/fermion/fermion.cpp
+  blocks/fermion/fermion_matrix.cpp
+  blocks/fermion/fermion_apply.cpp
+  blocks/fermion/terms/compile.cpp
 
   blocks/tj/tj.cpp
   blocks/tj/tj_matrix.cpp

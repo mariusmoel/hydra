@@ -40,5 +40,7 @@ void fill(ProductState const &pstate, tJ const &block,
 template <typename coeff_t>
 void fill(ProductState const &pstate, Electron const &block,
           arma::Col<coeff_t> &vector);
-
+template <typename coeff_t>
+void fill(ProductState const &pstate, Fermion const &block,
+          arma::Col<coeff_t> &vector);
 } // namespace hydra

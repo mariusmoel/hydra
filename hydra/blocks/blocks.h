@@ -6,10 +6,11 @@
 #include <hydra/blocks/spinhalf/spinhalf.h>
 #include <hydra/blocks/tj/tj.h>
 #include <hydra/blocks/electron/electron.h>
+#include <hydra/blocks/fermion/fermion.h>
 
 namespace hydra {
 
-using block_variant_t = std::variant<Spinhalf, tJ, Electron>;
+using block_variant_t = std::variant<Spinhalf, tJ, Electron, Fermion>;
   
 class Block {
 public:
@@ -17,6 +18,7 @@ public:
   Block(Spinhalf const& variant);
   Block(tJ const& variant);
   Block(Electron const& variant);
+  Block(Fermion const& variant);
   Block(block_variant_t const& variant);
   idx_t size() const;
   uint64_t hash() const;

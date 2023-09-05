@@ -73,6 +73,11 @@
 #include "indexing/electron/indexing_symmetric_no_np.h"
 #include "indexing/electron/indexing_symmetric_np.h"
 
+#include "indexing/fermion/indexing_no_np.h"
+#include "indexing/fermion/indexing_np.h"
+#include "indexing/fermion/indexing_symmetric_no_np.h"
+#include "indexing/fermion/indexing_symmetric_np.h"
+
 #include "blocks/spinhalf/spinhalf.h"
 #include "blocks/spinhalf/spinhalf_apply.h"
 // #include "blocks/spinhalf/spinhalf_fill.h"
@@ -83,6 +88,11 @@
 #include "blocks/electron/electron_apply.h"
 #include "blocks/electron/electron_matrix.h"
 #include "blocks/electron/terms/compile.h"
+
+#include "blocks/fermion/fermion.h"
+#include "blocks/fermion/fermion_apply.h"
+#include "blocks/fermion/fermion_matrix.h"
+#include "blocks/fermion/terms/compile.h"
 
 #include "blocks/tj/tj.h"
 #include "blocks/tj/tj_apply.h"

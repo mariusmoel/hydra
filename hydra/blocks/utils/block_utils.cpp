@@ -21,6 +21,15 @@ void check_nup_ndn_electron(int n_sites, int nup, int ndn,
     Log.err("Error creating {}: invalid value of ndn", block_name);
 }
 
+
+void check_n_fermion(int n_sites, int n,
+                            std::string block_name) {
+  if (n_sites < 0)
+    Log.err("Error creating {}: n_sites < 0", block_name);
+  if ((n < 0) || (n > n_sites))
+    Log.err("Error creating {}: invalid value of nup", block_name);
+}
+
 void check_nup_ndn_tj(int n_sites, int nup, int ndn, std::string block_name) {
   if ((nup < 0) || (nup > n_sites))
     Log.err("Error creating {}: invalid value of nup", block_name);

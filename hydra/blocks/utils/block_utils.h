@@ -12,7 +12,8 @@ void check_nup_spinhalf(int n_sites, int nup, std::string block_name);
 void check_nup_ndn_tj(int n_sites, int nup, int ndn, std::string block_name);
 void check_nup_ndn_electron(int n_sites, int nup, int ndn,
                             std::string block_name);
-
+void check_n_fermion(int n_sites, int n,
+                            std::string block_name);
 void check_n_sites(int n_sites, PermutationGroup const &permutation_group);
 
 template <class coeff_t>

@@ -15,7 +15,7 @@ namespace hydra::symmetries {
 
 using span_size_t = gsl::span<int const>::size_type;
 
-template <typename bit_t, class StatesIndexing, class GroupAction>
+template <typename bit_t, class StatesIndexing, class GroupAction, bool fermionic = false>
 inline std::tuple<std::vector<bit_t>, std::vector<idx_t>, std::vector<int>,
                   std::vector<std::pair<span_size_t, span_size_t>>,
                   std::vector<double>>
@@ -30,7 +30,12 @@ representatives_indices_symmetries_limits_norms(
   std::vector<double> norms;
   for (auto [state, idx] : states_indexing.states_indices()) {
     if (is_representative(state, group_action)) {
-      double nrm = symmetries::norm(state, group_action, irrep);
+      double nrm = 0.0;
+      if constexpr (fermionic) {
+      nrm = symmetries::norm_fermionic(state, group_action, irrep);
+      } else {
+      nrm = symmetries::norm(state, group_action, irrep);
+      }
       if (std::abs(nrm) > 1e-6) {
         idces[idx] = reps.size();
         reps.push_back(state);

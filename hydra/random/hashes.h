@@ -7,6 +7,7 @@
 #include <hydra/blocks/spinhalf/spinhalf.h>
 #include <hydra/blocks/tj/tj.h>
 #include <hydra/blocks/electron/electron.h>
+#include <hydra/blocks/fermion/fermion.h>
 
 namespace hydra::random {
 
@@ -17,5 +18,6 @@ uint64_t hash(Representation const &irrep);
 uint64_t hash(Spinhalf const &spinhalf);
 uint64_t hash(tJ const &tj);
 uint64_t hash(Electron const &electron);
+uint64_t hash(Fermion const &fermion);
 
 } // namespace hydra::random
