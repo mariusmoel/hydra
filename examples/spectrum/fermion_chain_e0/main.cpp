@@ -3,7 +3,7 @@
 int main() {
   using namespace hydra;
 
-  int n_sites = 3;
+  int n_sites = 4;
   int nup = 2;
 
   // Define the Hilbert space block
