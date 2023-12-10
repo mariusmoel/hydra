@@ -5,6 +5,7 @@
 #include <hydra/blocks/electron/electron_apply.h>
 #include <hydra/blocks/spinhalf/spinhalf_apply.h>
 #include <hydra/blocks/tj/tj_apply.h>
+#include <hydra/blocks/fermion/fermion_apply.h>
 
 namespace hydra {
 
@@ -79,6 +80,10 @@ void apply(BondList const &bonds, Block const &block_in,
       variant::overloaded{
           [&bonds, &vec_in, &vec_out](Spinhalf const &blk_in,
                                       Spinhalf const &blk_out) {
+            apply(bonds, blk_in, vec_in, blk_out, vec_out);
+          },
+          [&bonds, &vec_in, &vec_out](Fermion const &blk_in,
+                                      Fermion const &blk_out) {
             apply(bonds, blk_in, vec_in, blk_out, vec_out);
           },
           [&bonds, &vec_in, &vec_out](tJ const &blk_in, tJ const &blk_out) {

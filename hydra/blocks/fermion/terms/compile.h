@@ -6,7 +6,7 @@
 namespace hydra::fermion {
 
 const std::vector<std::string> special_bond_types = {
-    "HOP",  "NUMBER"}; // "C", "CDAG",
+    "HOP"}; //,  "NUMBER"}; // "C", "CDAG",
 
 BondList compile(BondList const &bonds, double precision = 1e-12);
 

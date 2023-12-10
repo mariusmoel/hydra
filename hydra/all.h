@@ -77,6 +77,7 @@
 #include "indexing/fermion/indexing_np.h"
 #include "indexing/fermion/indexing_symmetric_no_np.h"
 #include "indexing/fermion/indexing_symmetric_np.h"
+#include "indexing/fermion/symmetric_iterator.h"
 
 #include "blocks/spinhalf/spinhalf.h"
 #include "blocks/spinhalf/spinhalf_apply.h"

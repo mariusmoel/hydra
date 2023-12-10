@@ -59,6 +59,7 @@ add_library(hydra STATIC
   indexing/fermion/indexing_no_np.cpp
   indexing/fermion/indexing_symmetric_np.cpp
   indexing/fermion/indexing_symmetric_no_np.cpp
+  indexing/fermion/symmetric_iterator.cpp
 
   blocks/blocks.cpp
   blocks/utils/block_utils.cpp
@@ -127,7 +128,7 @@ add_library(hydra STATIC
 
 
 target_include_directories(hydra PUBLIC ${CMAKE_SOURCE_DIR})
-target_compile_features(hydra PUBLIC cxx_std_17)
+target_compile_features(hydra PUBLIC cxx_std_20)
 
 if(OPTIMIZE_FOR_NATIVE)
 message(STATUS "Using native architecture optimizations")

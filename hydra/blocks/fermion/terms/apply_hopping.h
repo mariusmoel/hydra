@@ -28,13 +28,24 @@ void apply_hopping(Bond const &bond, IndexingIn &&indexing_in,
   bit_t fermimask = (((bit_t)1 << (u - l - 1)) - 1) << (l + 1);
   coeff_t t = bond.coupling<coeff_t>();
 
+  std::cout << " " << std::endl;
+  std::cout << l << " "<< u << std::endl;
+
+  // check whether application allowed, i.e. wether non-zero: avoid placing fermions on top of each other for example etc
   auto non_zero_term = [&flipmask](bit_t const &spins) -> bool {
     return bitops::popcnt(spins & flipmask) & 1;
   };
 
+  // calc term action: combine value and fermi sign
   auto term_action = [&](bit_t spins) -> std::pair<bit_t, coeff_t> {
     bool fermi = bitops::popcnt(spins & fermimask) & 1;
+    std::cout << " " << fermi << " :) " << std::endl;
     spins ^= flipmask;
+
+    // has to be 1 all the time
+    std::cout << "non zero: " << non_zero_term(spins) << std::endl;
+
+    // fermi ? t : -t should be around? -t : t????
     if constexpr (is_complex<coeff_t>()) {
       coeff_t tt = (bitops::gbit(spins, s1)) ? t : hydra::conj(t);
       return {spins, fermi ? tt : -tt};

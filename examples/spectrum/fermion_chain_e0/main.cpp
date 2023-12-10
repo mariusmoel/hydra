@@ -3,21 +3,20 @@
 int main() {
   using namespace hydra;
 
-  int n_sites = 8;
-  int nup = 1; //n_sites / 2;
+  int n_sites = 3;
+  int nup = 2;
 
   // Define the Hilbert space block
-  auto block = Spinhalf(n_sites, nup);
+  auto block = Fermion(n_sites,nup);
 
-  // Define the nearest-neighbor Heisenberg Hamiltonian
+  // Define the nearest-neighbor Hopping Hamiltonian
   BondList bonds;
   for (int i = 0; i < n_sites; ++i) {
-    bonds << Bond("HB", "J", {i, (i + 1) % n_sites});
+    bonds << Bond("HOP", "J", {i, (i + 1) % n_sites});
   }
 
   // Set the coupling constant "J" to one
-  bonds["J"] = 1.0;
-
+  bonds["J"] = -2.234;
   // Compute and print the ground state energy
   double e0 = eig0(bonds, block);
   HydraPrint(e0);

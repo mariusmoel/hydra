@@ -2,6 +2,7 @@
 
 #include <hydra/blocks/electron/electron_matrix.h>
 #include <hydra/blocks/spinhalf/spinhalf_matrix.h>
+#include <hydra/blocks/fermion/fermion_matrix.h>
 #include <hydra/blocks/tj/tj_matrix.h>
 
 namespace hydra {

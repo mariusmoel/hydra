@@ -278,4 +278,84 @@ template void fill(ProductState const &pstate, Electron const &block,
                    arma::Col<double> &vector);
 template void fill(ProductState const &pstate, Electron const &block,
                    arma::Col<complex> &vector);
+
+template <typename bit_t>
+bit_t get_fermions(ProductState const &pstate, int nup = -1) {
+  bit_t fermions = 0;
+  int pnup = 0;
+  for (int s = 0; s < pstate.n_sites(); ++s) {
+    if (pstate[s] == "Up") {
+      fermions |= ((bit_t)1 << s);
+      ++pnup;
+    } else {
+      if (pstate[s] != "Dn") {
+        Log.err(
+            "Error creating product state: invalid local state encountered: {}",
+            pstate[s]);
+      }
+    }
+  }
+
+  if ((nup != pnup) && (nup != -1)) {
+    Log.err("Error creating product state: number of up fermions incompatible "
+            "with block");
+  }
+  return fermions;
+}
+
+template <typename coeff_t>
+void fill(ProductState const &pstate, Fermion const &block,
+          arma::Col<coeff_t> &vector) {
+  using namespace indexing::fermion;
+  check_product_state_n_sites(block, pstate);
+  check_product_state_not_symmetric(block);
+
+  vector.zeros();
+  std::visit(variant::overloaded{
+                 [&pstate, &vector](IndexingNp<uint16_t> const &indexing) {
+                   uint16_t fermions =
+                       get_fermions<uint16_t>(pstate, indexing.n());
+                   idx_t idx = indexing.index(fermions);
+                   vector(idx) = 1.0;
+                 },
+                 [&pstate, &vector](IndexingNp<uint32_t> const &indexing) {
+                   uint32_t fermions =
+                       get_fermions<uint32_t>(pstate, indexing.n());
+                   idx_t idx = indexing.index(fermions);
+                   vector(idx) = 1.0;
+                 },
+                 [&pstate, &vector](IndexingNp<uint64_t> const &indexing) {
+                   uint64_t fermions =
+                       get_fermions<uint64_t>(pstate, indexing.n());
+                   idx_t idx = indexing.index(fermions);
+                   vector(idx) = 1.0;
+                 },
+                 [&pstate, &vector](IndexingNoNp<uint16_t> const &indexing) {
+                   uint16_t fermions = get_fermions<uint16_t>(pstate);
+                   idx_t idx = indexing.index(fermions);
+                   vector(idx) = 1.0;
+                 },
+                 [&pstate, &vector](IndexingNoNp<uint32_t> const &indexing) {
+                   uint32_t fermions = get_fermions<uint32_t>(pstate);
+                   idx_t idx = indexing.index(fermions);
+                   vector(idx) = 1.0;
+                 },
+                 [&pstate, &vector](IndexingNoNp<uint64_t> const &indexing) {
+                   uint64_t fermions = get_fermions<uint16_t>(pstate);
+                   idx_t idx = indexing.index(fermions);
+                   vector(idx) = 1.0;
+                 },
+                 [](auto const &) {
+                   Log.err("Error creating product state: Invalid Indexing");
+                 },
+             },
+             block.indexing());
+}
+
+template void fill(ProductState const &pstate, Fermion const &block,
+                   arma::Col<double> &vector);
+template void fill(ProductState const &pstate, Fermion const &block,
+                   arma::Col<complex> &vector);
+
+
 } // namespace hydra

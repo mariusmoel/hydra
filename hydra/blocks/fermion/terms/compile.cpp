@@ -23,9 +23,11 @@ BondList compile(BondList const &bonds, double precision) {
                 type);
       } else {
 
-        if ((type == "HOP") || (type == "NUMBER")) {
+        if (type == "HOP") {
+          //check_bond_has_correct_number_of_sites(bond, 2);
+          //check_bond_has_disjoint_sites(bond)
           bonds_special << Bond("HOP", bond.coupling(), bond.sites());
-          bonds_special << Bond("NUMBER", bond.coupling(), bond.sites());
+          //bonds_special << Bond("NUMBER", bond.coupling(), bond.sites());
         } else {
           bonds_special << bond;
         }

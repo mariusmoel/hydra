@@ -15,6 +15,7 @@ void apply(BondList const &bonds, Fermion const &block_in,
   assert(block_in.size() == (idx_t)vec_in.size());
   assert(block_out.size() == (idx_t)vec_out.size());
 
+  // get Bondlist out of generic/special bonds -> see compile.cpp
   BondList bonds_c = fermion::compile(bonds, 1e-12);
   operators::check_bonds_in_range(bonds, block_in.n_sites());
 
@@ -24,7 +25,7 @@ void apply(BondList const &bonds, Fermion const &block_in,
   }
 
   vec_out.zeros();
-  
+  //smart lambda
   auto fill = [&vec_out, &vec_in](idx_t idx_out, idx_t idx_in, coeff_t val) {
 #ifdef _OPENMP
     if constexpr (is_real<coeff_t>()) {
@@ -43,10 +44,13 @@ void apply(BondList const &bonds, Fermion const &block_in,
       *i += x.imag();
     }
 #else
+   // Matrix-vector Multiplication 
+    std::cout << vec_out(idx_out)  << " " << vec_in(idx_in) << std::endl;
     vec_out(idx_out) += val * vec_in(idx_in);
+    std::cout << " " << idx_in <<" "<< idx_out << " " << vec_out(idx_out) << " " << val << " " << vec_in(idx_in) << std::endl;
 #endif
   };
-  
+
   auto const &indexing_in = block_in.indexing();
   auto const &indexing_out = block_out.indexing();
   fermion::apply_terms_dispatch<coeff_t>(bonds_c, indexing_in, indexing_out,

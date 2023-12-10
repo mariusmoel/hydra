@@ -49,6 +49,19 @@ uint64_t hash(Spinhalf const &spinhalf) {
   return h;
 }
 
+uint64_t hash(Fermion const &fermion) {
+  uint64_t h =
+      fermion.n_sites() == 0 ? 0 : hash_fnv1((uint64_t)fermion.n_sites());
+  if (fermion.np_conserved()) {
+    h = hash_combine(h, hash_fnv1((uint64_t)fermion.n()));
+  }
+  if (fermion.symmetric()) {
+    h = hash_combine(h, hash(fermion.permutation_group()));
+    h = hash_combine(h, hash(fermion.irrep()));
+  }
+  return h;
+}
+
 uint64_t hash(tJ const &tj) {
   uint64_t h = tj.n_sites() == 0 ? 0 : hash_fnv1((uint64_t)tj.n_sites());
   if (tj.charge_conserved() && tj.sz_conserved()) {

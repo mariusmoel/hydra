@@ -8,7 +8,7 @@ project(
 
 option(BUILD_TESTS "Build test programs" OFF)
 option(OPTIMIZE_FOR_NATIVE "Optimize for native architecture" OFF)
-option(OMP_THREADING "Enable OpenMp threading" ON)
+option(OMP_THREADING "Enable OpenMp threading" OFF)
 option(MKL_THREADING "Enable IntelMKL threading" ON)
 option(SANITIZER "Build with -fsanitize=address" OFF)
 

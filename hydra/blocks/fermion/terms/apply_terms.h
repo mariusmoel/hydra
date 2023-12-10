@@ -22,6 +22,7 @@ void apply_terms(BondList const &bonds, IndexingIn const &indexing_in,
       if (bond.type() == "HOP") {
         fermion::apply_hopping<bit_t, coeff_t, symmetric>(bond, indexing_in,
                                                             indexing_out, fill);
+        std::cout << "test" << std::endl;
       /*} else if (bond.type() == "C") {
         fermion::apply_c<bit_t, coeff_t, symmetric>(bond, indexing_in,
                                                          indexing_out, fill);
