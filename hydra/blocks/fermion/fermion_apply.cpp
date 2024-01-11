@@ -45,9 +45,9 @@ void apply(BondList const &bonds, Fermion const &block_in,
     }
 #else
    // Matrix-vector Multiplication 
-    std::cout << vec_out(idx_out)  << " " << vec_in(idx_in) << std::endl;
+    //std::cout << vec_out(idx_out)  << " " << vec_in(idx_in) << std::endl;
     vec_out(idx_out) += val * vec_in(idx_in);
-    std::cout << " " << idx_in <<" "<< idx_out << " " << vec_out(idx_out) << " " << val << " " << vec_in(idx_in) << std::endl;
+    //std::cout << " " << idx_in <<" "<< idx_out << " " << vec_out(idx_out) << " " << val << " " << vec_in(idx_in) << std::endl;
 #endif
   };
 

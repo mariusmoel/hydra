@@ -5,9 +5,10 @@ int main() {
 
   int n_sites = 12;
   int nup = 4;
+  int ndn = 0;
 
   // Define the Hilbert space block
-  auto block = Fermion(n_sites,nup);
+  auto block = Electron(n_sites,nup, ndn);
 
   // Define the nearest-neighbor Hopping Hamiltonian
   BondList bonds;
